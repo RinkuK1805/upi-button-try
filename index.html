@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +17,27 @@
             background-color: #f0f2f5;
             margin: 0;
         }
+
         .card {
             background: white;
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
             max-width: 400px;
             width: 90%;
         }
-        h2 { color: #1a1a1a; margin-bottom: 10px; }
-        p { color: #666; margin-bottom: 25px; font-size: 14px; }
+
+        h2 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
 
         /* The Button Styling */
         .pay-btn {
@@ -36,7 +47,8 @@
             gap: 12px;
             width: 100%;
             padding: 16px;
-            background-color: #1b68ff; /* UPI Blue */
+            background-color: #1b68ff;
+            /* UPI Blue */
             color: white;
             text-decoration: none;
             border-radius: 12px;
@@ -46,10 +58,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
+
         .pay-btn:hover {
             background-color: #004ccb;
             transform: translateY(-2px);
         }
+
         .pay-btn img {
             height: 24px;
             filter: brightness(0) invert(1);
@@ -65,6 +79,7 @@
             border: 1px solid #eee;
             border-radius: 10px;
         }
+
         .qr-label {
             margin-top: 10px;
             font-weight: bold;
@@ -72,61 +87,66 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="card">
-    <h2>Make a Payment</h2>
-    <p>Using UPI ID: 7709512445.eazypay@icici</p>
+    <div class="card">
+        <h2>Make a Payment</h2>
+        <p>Using UPI ID: 7709512445.eazypay@icici</p>
 
-    <!-- The Payment Button -->
-        <a href="upi://pay?pa=9763311303@axl&pn=Payee&cu=INR">
-  <button style="padding: 12px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer;">
-    Pay via UPI
-  </button>
-
-  <a href="upi://pay?pa=9763311303@axl&pn=Payee&am=100&cu=INR&tn=Payment">
-  <button style="padding: 12px 20px; font-size: 16px; background-color: #2196F3; color: white; border: none; border-radius: 6px; cursor: pointer;">
-    Pay ₹100 via UPI
-  </button>
-</a>
-
-</a>
+        <!-- The Payment Button -->
+        <a href="upi://pay?pa=7709512445.eazypay@icici&pn=Payee&cu=INR">
+            <button
+                style="padding: 12px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                Pay via UPI
+            </button>
+        </a>
 
 
-    <div class="qr-label">OR Scan QR Code</div>
-    
-    <!-- QR Code Container -->
-    <div id="qrcode"></div>
-</div>
+        <a href="upi://pay?pa=7709512445.eazypay@icici&pn=Payee&am=100&cu=INR&tn=Payment">
+            <button
+                style="padding: 12px 20px; font-size: 16px; background-color: #2196F3; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                Pay ₹100 via UPI
+            </button>
+        </a>
 
-<script>
-    const upiId = "7709512445.eazypay@icici";
-    const payeeName = "Recipient Name"; // Change this to your actual Name
-    const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&cu=INR`;
 
-    // 1. Logic for the Button click
-    function openUPI() {
-        // Standard UPI URI
-        window.location.href = upiUrl;
 
-        // Fallback for some Android Chrome versions
-        setTimeout(() => {
-            if (document.hasFocus()) {
-                console.log("If the app didn't open, please scan the QR code below.");
-            }
-        }, 1000);
-    }
+        <div class="qr-label">OR Scan QR Code</div>
 
-    // 2. Automatically generate the QR code
-    new QRCode(document.getElementById("qrcode"), {
-        text: upiUrl,
-        width: 200,
-        height: 200,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.M
-    });
-</script>
+        <!-- QR Code Container -->
+        <div id="qrcode"></div>
+    </div>
+
+    <script>
+        const upiId = "7709512445.eazypay@icici";
+        const payeeName = "Recipient Name"; // Change this to your actual Name
+        const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&cu=INR`;
+
+        // 1. Logic for the Button click
+        function openUPI() {
+            // Standard UPI URI
+            window.location.href = upiUrl;
+
+            // Fallback for some Android Chrome versions
+            setTimeout(() => {
+                if (document.hasFocus()) {
+                    console.log("If the app didn't open, please scan the QR code below.");
+                }
+            }, 1000);
+        }
+
+        // 2. Automatically generate the QR code
+        new QRCode(document.getElementById("qrcode"), {
+            text: upiUrl,
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+        });
+    </script>
 
 </body>
+
 </html>
