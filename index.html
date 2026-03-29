@@ -94,6 +94,15 @@
         <h2>Make a Payment</h2>
         <p>Using UPI ID: 7709512445.eazypay@icici</p>
 
+        <!-- btton by gemine -->
+        <!-- Style the link directly so it's valid HTML -->
+        <a id="upiLink" href="upi://pay?pa=7709512445.eazypay@icici&pn=Payee&cu=INR"
+            style="display: inline-block; padding: 12px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; font-family: sans-serif;">
+            Pay via UPI
+        </a>
+
+
+
         <!-- The Payment Button -->
         <a href="upi://pay?pa=7709512445.eazypay@icici&pn=Payee&cu=INR">
             <button
@@ -145,7 +154,15 @@
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.M
         });
+
+        // This helps 'force' the browser to recognize the UPI intent
+        document.getElementById('upiLink').addEventListener('click', function (e) {
+            // If on Android Chrome, this helps trigger the app selector
+            window.location.href = this.href;
+        });
     </script>
+
+
 
 </body>
 
